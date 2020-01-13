@@ -6,6 +6,7 @@ import sys
 
 
 def main():
+	# python polkaspots.py --side 128 --radius 10 --dots 5 --images 100
 	arg_parser = argparse.ArgumentParser()
 	arg_parser.add_argument('-s', '--side', required=True)
 	arg_parser.add_argument('-r', '--radius', required=True)
