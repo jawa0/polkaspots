@@ -23,13 +23,14 @@ def main():
 
     side_px = int(args.side)
 
-    radius_px = float(args.radius)
+    radius_px = int(args.radius)
     max_overlap_squared = (1 * radius_px)**2
 
     nb_dots = int(args.dots)
     nb_images = int(args.images)
 
-    filename_prefix = 'dots_%03d_' % (nb_dots, )
+    img_prefix = f'dots_radius_{radius_px}_count_{nb_dots:02d}'
+    pos_prefix = f'positions_radius_{radius_px}_count_{nb_dots:02d}'
 
     for i in range(nb_images):
         surf = cr.ImageSurface(cr.FORMAT_RGB24, side_px, side_px)
@@ -69,8 +70,13 @@ def main():
             ctx.arc(centre_x, centre_y, radius_px, 0, 2 * pi)
             ctx.fill()
 
+        # Save image out.
+        surf.write_to_png(f'{img_prefix}_{i:05d}.png')
 
-        surf.write_to_png(filename_prefix + '%05d.png' % (i, ))
+        # Also save out generated dot centres.
+        with open(f'{pos_prefix}_{i:05d}.csv', 'wt') as pos_out:
+            for dot in generated_dots:
+                pos_out.write(f'{dot[0]}, {dot[1]}\n')
 
 
 def dist_squared(x_0, y_0, x_1, y_1):
