@@ -8,10 +8,10 @@ import subprocess
 
 if __name__ == '__main__':
     # python polkaspots.py --side 256 --radius 2 --dots 10 --images 100
-    NB_IMAGES = 100
+    NB_IMAGES = 200
     IMAGE_SIDE = 256
     radii = range(2, 40+1)
-    dot_counts = range(1, 10+1)
+    dot_counts = range(0, 10+1)
 
     ARG_IMAGE_SIDE = str(IMAGE_SIDE)
     ARG_NB_IMAGES = str(NB_IMAGES)
